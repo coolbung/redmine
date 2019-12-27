@@ -133,6 +133,9 @@ class TimeEntry < ActiveRecord::Base
       errors.add :hours, :invalid if hours < 0
       errors.add :hours, :invalid if hours == 0.0 && hours_changed? && !Setting.timelog_accept_0_hours?
 
+      days_diff = (Date.today - spent_on)
+      errors.add :spent_on, :invalid if days_diff.to_i  > Setting.timelog_max_days_before.to_i
+
       max_hours = Setting.timelog_max_hours_per_day.to_f
       if hours_changed? && max_hours > 0.0
         logged_hours = other_hours_with_same_user_and_day

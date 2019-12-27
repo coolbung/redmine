@@ -324,6 +324,9 @@ timelog_accept_0_hours:
 timelog_max_hours_per_day:
   format: int
   default: 999
+timelog_max_days_before:
+  format: int
+  default: 999
 timelog_accept_future_dates:
   default: 1
 show_status_changes_in_mail_subject:
